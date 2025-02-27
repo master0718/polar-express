@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Table Colors</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .day-1 {
+            background-color: #ffebcc; /* Light orange for Saturday */
+        }
+        .day-2 {
+            background-color: #d5e8d4; /* Light green for Sunday */        }
+        .full {
+            background-color: lightgray !important; /* Grey out full rows */
+            pointer-events: none; /* Prevent interaction */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Test Table Colors</h1>
+        <table>
+            <tbody>
+                <!-- Saturday Rows -->
+                <tr class="day-1">
+                    <td>Saturday Row 1</td>
+                    <td><input type="text" placeholder="Enter a number"></td>
+                </tr>
+                <tr class="day-1">
+                    <td>Saturday Row 2</td>
+                    <td><input type="text" placeholder="Enter a number"></td>
+                </tr>
+                <!-- Sunday Rows -->
+                <tr class="day-2">
+                    <td>Sunday Row 1</td>
+                    <td><input type="text" placeholder="Enter a number"></td>
+                </tr>
+                <tr class="day-2">
+                    <td>Sunday Row 2</td>
+                    <td><input type="text" placeholder="Enter a number"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+testStart of update_signups.php
+Raw Data Received: {"updates":[{"signup_id":"166","slot_id":"183","role_id":"4","num_people":"3","notes":"Changed role to Conductors"},{"signup_id":"167","slot_id":"167","role_id":"3","num_people":"2","notes":"The more chefs, the more cookies!"},{"signup_id":"168","slot_id":"191","role_id":"3","num_people":"2","notes":"Happy to be back"}]}
+Starting to process updates...
+Processing Update: Signup ID: 166, Slot ID: 183, Role ID: 4, Num People: 3, Notes: Changed role to Conductors
+Start of update_signups.php
+Raw Data Received: {"updates":[{"signup_id":"166","slot_id":"183","role_id":"3","num_people":"3","notes":"testing database"},{"signup_id":"167","slot_id":"167","role_id":"3","num_people":"2","notes":"The more chefs, the more cookies!"},{"signup_id":"168","slot_id":"191","role_id":"3","num_people":"2","notes":"Happy to be back"}]}
+Starting to process updates...
+Processing Update: Signup ID: 166, Slot ID: 183, Role ID: 3, Num People: 3, Notes: testing database
+Start of update_signups.php
+Raw Data Received: {"updates":[{"signup_id":"166","slot_id":"183","role_id":"3","num_people":"3","notes":"testing again"},{"signup_id":"167","slot_id":"167","role_id":"3","num_people":"2","notes":"The more chefs, the more cookies!"},{"signup_id":"168","slot_id":"191","role_id":"3","num_people":"2","notes":"Happy to be back"}]}
+Processing Update: {"signup_id":"166","slot_id":"183","role_id":"3","num_people":"3","notes":"testing again"}
+Signup ID: 166, Slot ID: 183, Role ID: 3, Num People: 3, Notes: testing again
+Start of update_signups.php
+Raw Data Received: {"updates":[{"signup_id":"166","slot_id":"183","role_id":"3","num_people":"3","notes":"testing 1, 2, 3"},{"signup_id":"167","slot_id":"167","role_id":"3","num_people":"2","notes":"The more chefs, the more cookies!"},{"signup_id":"168","slot_id":"191","role_id":"3","num_people":"2","notes":"Happy to be back"}]}
+Processing Update: {"signup_id":"166","slot_id":"183","role_id":"3","num_people":"3","notes":"testing 1, 2, 3"}
+Signup ID: 166, Slot ID: 183, Role ID: 3, Num People: 3, Notes: testing 1, 2, 3
+SQL Statement Preparation Failed: no such column: role_id
+Error: SQL Statement Preparation Failed: no such column: role_id
+Start of update_signups.php
+Raw Data Received: {"updates":[{"signup_id":"166","slot_id":"183","role_id":"3","num_people":"3","notes":"After the id fix"},{"signup_id":"167","slot_id":"167","role_id":"3","num_people":"2","notes":"The more chefs, the more cookies!"},{"signup_id":"168","slot_id":"191","role_id":"3","num_people":"2","notes":"Happy to be back"}]}
+Processing Update: {"signup_id":"166","slot_id":"183","role_id":"3","num_people":"3","notes":"After the id fix"}
+Signup ID: 166, Slot ID: 183, Role ID: 3, Num People: 3, Notes: After the id fix
+Update successful for signup_id: 166
+Processing Update: {"signup_id":"167","slot_id":"167","role_id":"3","num_people":"2","notes":"The more chefs, the more cookies!"}
+Signup ID: 167, Slot ID: 167, Role ID: 3, Num People: 2, Notes: The more chefs, the more cookies!
+Update successful for signup_id: 167
+Processing Update: {"signup_id":"168","slot_id":"191","role_id":"3","num_people":"2","notes":"Happy to be back"}
+Signup ID: 168, Slot ID: 191, Role ID: 3, Num People: 2, Notes: Happy to be back
+Update successful for signup_id: 168
+Response Sent: {"success":true,"message":"3 records updated."}
+Start of update_signups.php
+Raw Data Received: {"updates":[{"signup_id":"166","slot_id":"183","role_id":"3","num_people":"3","notes":"After the id fixes"},{"signup_id":"167","slot_id":"167","role_id":"3","num_people":"2","notes":"The more chefs, the more cookies!"},{"signup_id":"168","slot_id":"191","role_id":"3","num_people":"2","notes":"Happy to be back"}]}
+Processing Update: {"signup_id":"166","slot_id":"183","role_id":"3","num_people":"3","notes":"After the id fixes"}
+Signup ID: 166, Slot ID: 183, Role ID: 3, Num People: 3, Notes: After the id fixes
+Update successful for signup_id: 166
+Processing Update: {"signup_id":"167","slot_id":"167","role_id":"3","num_people":"2","notes":"The more chefs, the more cookies!"}
+Signup ID: 167, Slot ID: 167, Role ID: 3, Num People: 2, Notes: The more chefs, the more cookies!
+Update successful for signup_id: 167
+Processing Update: {"signup_id":"168","slot_id":"191","role_id":"3","num_people":"2","notes":"Happy to be back"}
+Signup ID: 168, Slot ID: 191, Role ID: 3, Num People: 2, Notes: Happy to be back
+Update successful for signup_id: 168
+Response Sent: {"success":true,"message":"3 records updated."}
+Start of update_signups.php
+Raw Data Received: {"updates":[{"signup_id":"166","slot_id":"183","role_id":"3","num_people":"3","notes":"Only process what has changed"},{"signup_id":"167","slot_id":"167","role_id":"3","num_people":"2","notes":"The more chefs, the more cookies!"},{"signup_id":"168","slot_id":"191","role_id":"3","num_people":"2","notes":"Happy to be back"}]}
+Processing Update: {"signup_id":"166","slot_id":"183","role_id":"3","num_people":"3","notes":"Only process what has changed"}
+Update successful for signup_id: 166
+Processing Update: {"signup_id":"167","slot_id":"167","role_id":"3","num_people":"2","notes":"The more chefs, the more cookies!"}
+No changes detected for signup_id: 167
+Processing Update: {"signup_id":"168","slot_id":"191","role_id":"3","num_people":"2","notes":"Happy to be back"}
+No changes detected for signup_id: 168
+Response Sent: {"success":true,"message":"All changes successfully recorded."}
+Start of update_signups.php
+Raw Data Received: {"updates":[{"signup_id":"166","slot_id":"","role_id":"3","num_people":"3","notes":"Test"},{"signup_id":"167","slot_id":"","role_id":"3","num_people":"2","notes":"The more chefs, the more cookies!"},{"signup_id":"168","slot_id":"","role_id":"3","num_people":"2","notes":"Happy to be back"}]}
+Processing Update: {"signup_id":"166","slot_id":"","role_id":"3","num_people":"3","notes":"Test"}
+Update successful for signup_id: 166
+Processing Update: {"signup_id":"167","slot_id":"","role_id":"3","num_people":"2","notes":"The more chefs, the more cookies!"}
+Update successful for signup_id: 167
+Processing Update: {"signup_id":"168","slot_id":"","role_id":"3","num_people":"2","notes":"Happy to be back"}
+Update successful for signup_id: 168
+Response Sent: {"success":true,"message":"All changes successfully recorded."}
+Start of update_signups.php
+Raw Data Received: {"updates":[{"signup_id":"170","slot_id":"167","role_id":"3","num_people":"3","notes":"First ride of the first day!"},{"signup_id":"171","slot_id":"175","role_id":"3","num_people":"5","notes":"Sixth ride of the first day"},{"signup_id":"172","slot_id":"167","role_id":"3","num_people":"3","notes":"Third ride of the second day"}]}
+Processing Update: {"signup_id":"170","slot_id":"167","role_id":"3","num_people":"3","notes":"First ride of the first day!"}
+Update successful for signup_id: 170
+Processing Update: {"signup_id":"171","slot_id":"175","role_id":"3","num_people":"5","notes":"Sixth ride of the first day"}
+Update successful for signup_id: 171
+Processing Update: {"signup_id":"172","slot_id":"167","role_id":"3","num_people":"3","notes":"Third ride of the second day"}
+Update successful for signup_id: 172
+Response Sent: {"success":true,"message":"All changes successfully recorded."}
+Start of update_signups.php
+Raw Data Received: {"updates":[{"signup_id":"170","slot_id":"159","role_id":"3","num_people":"3","notes":"First ride of the first day!"},{"signup_id":"171","slot_id":"195","role_id":"1","num_people":"5","notes":"Sixth ride of the first day"},{"signup_id":"172","slot_id":"167","role_id":"3","num_people":"3","notes":"Third ride of the second day"}]}
+Processing Update: {"signup_id":"170","slot_id":"159","role_id":"3","num_people":"3","notes":"First ride of the first day!"}
+Update successful for signup_id: 170
+Processing Update: {"signup_id":"171","slot_id":"195","role_id":"1","num_people":"5","notes":"Sixth ride of the first day"}
+Update successful for signup_id: 171
+Processing Update: {"signup_id":"172","slot_id":"167","role_id":"3","num_people":"3","notes":"Third ride of the second day"}
+No changes detected for signup_id: 172
+Response Sent: {"success":true,"message":"All changes successfully recorded."}
+Start of update_signups.php
+Raw Data Received: {"updates":[{"signup_id":"170","slot_id":"187","role_id":"4","num_people":"4","notes":"First change"},{"signup_id":"172","slot_id":"167","role_id":"3","num_people":"3","notes":"Third ride of the second day"},{"signup_id":"171","slot_id":"167","role_id":"3","num_people":"5","notes":"Sixth ride of the first day"}]}
+Processing Update: {"signup_id":"170","slot_id":"187","role_id":"4","num_people":"4","notes":"First change"}
+Update successful for signup_id: 170
+Processing Update: {"signup_id":"172","slot_id":"167","role_id":"3","num_people":"3","notes":"Third ride of the second day"}
+No changes detected for signup_id: 172
+Processing Update: {"signup_id":"171","slot_id":"167","role_id":"3","num_people":"5","notes":"Sixth ride of the first day"}
+Update successful for signup_id: 171
+Response Sent: {"success":true,"message":"All changes successfully recorded."}
