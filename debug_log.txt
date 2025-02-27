@@ -85,3 +85,8 @@ No changes detected for signup_id: 172
 Processing Update: {"signup_id":"171","slot_id":"167","role_id":"3","num_people":"5","notes":"Sixth ride of the first day"}
 Update successful for signup_id: 171
 Response Sent: {"success":true,"message":"All changes successfully recorded."}
+Start of update_signups.php
+Raw Data Received: {"updates":[{"signup_id":"186","slot_id":"10:00 AM","role_id":"3","num_people":"2","notes":"TEST_Volunteer_group\n"}]}
+Processing Update: {"signup_id":"186","slot_id":"10:00 AM","role_id":"3","num_people":"2","notes":"TEST_Volunteer_group\n"}
+Update successful for signup_id: 186
+Response Sent: {"success":true,"message":"All changes successfully recorded."}
