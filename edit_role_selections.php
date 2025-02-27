@@ -36,12 +36,12 @@ try {
     if (!$rideStmt) {
         throw new Exception("Failed to prepare ride statement: " . $db->lastErrorMsg());
     }
-    
+
     $rideResult = $rideStmt->execute();
     if (!$rideResult) {
         throw new Exception("Failed to execute ride statement: " . $db->lastErrorMsg());
     }
-    
+
 
     $rideShifts = [];
     $lastDay = null;
@@ -81,17 +81,17 @@ try {
     exit;
 }
 
-    // Fetch available roles for the dropdown
-    $roleStmt = $db->prepare("SELECT id, role_name FROM volunteer_roles");
-    $roleResult = $roleStmt->execute();
+// Fetch available roles for the dropdown
+$roleStmt = $db->prepare("SELECT id, role_name FROM volunteer_roles");
+$roleResult = $roleStmt->execute();
 
-    $roles = [];
-    while ($roleRow = $roleResult->fetchArray(SQLITE3_ASSOC)) {
-        $roles[] = $roleRow;
-    }
+$roles = [];
+while ($roleRow = $roleResult->fetchArray(SQLITE3_ASSOC)) {
+    $roles[] = $roleRow;
+}
 
-    // Fetch all volunteer rides and roles
-    $stmt = $db->prepare("
+// Fetch all volunteer rides and roles
+$stmt = $db->prepare("
     SELECT r.id AS ride_id, r.day, r.time, vr.role_name, vs.num_people, vs.notes, vs.id AS signup_id, vslot.id AS slot_id, vslot.role_id
     FROM volunteer_signups vs
     JOIN volunteer_slots vslot ON vs.slot_id = vslot.id
@@ -148,23 +148,73 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit My Selections</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0; }
-        .container { width: 90%; margin: auto; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid black; padding: 8px; text-align: left; }
-        th { background-color: #d4edda; }
-        .header-row { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-        .header-row .left { flex: 1; text-align: left; }
-        .header-row .right { flex: 1; text-align: right; }
-        button { background-color: blue; color: white; border: none; padding: 10px; cursor: pointer; margin-top: 10px; }
-        button:disabled { background-color: gray; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #d4edda;
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .header-row .left {
+            flex: 1;
+            text-align: left;
+        }
+
+        .header-row .right {
+            flex: 1;
+            text-align: right;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:disabled {
+            background-color: gray;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header-row">
@@ -190,29 +240,29 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
             <tbody>
                 <?php foreach ($rides as $ride): ?>
 
-<!-- Debugging Block -->
-<tr>
-<td>
-    <?= htmlspecialchars("{$ride['day_abbr']} " . date('m-d-Y', strtotime($ride['day']))) ?>
-</td>
-<td>
-    <select name="shift_id" onchange="enableSaveButton()">
-        <?php foreach ($ride['shift_options'] ?? [] as $shift): ?>
-            <!-- Check if shift_start and shift_end are available -->
-            <?php if (!empty($shift['shift_start']) && !empty($shift['shift_end'])): ?>
-                <?php
-                    // Build the display text
-                    $displayText = "{$shift['day_abbr']} - {$shift['shift_start']} - {$shift['shift_end']}";
-                    $spotsText = $shift['remaining_spots'] > 0 ? "({$shift['remaining_spots']} spots)" : "(Change Role)";
-                ?>
-                <!-- Apply conditional styling based on remaining spots -->
-                <option value="<?= htmlspecialchars($shift['shift_id']) ?>" <?= $shift['remaining_spots'] == 0 ? 'style="color: red;"' : '' ?>>
-                    <?= htmlspecialchars("{$displayText} {$spotsText}") ?>
-                </option>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    </select>
-</td>
+                    <!-- Debugging Block -->
+                    <tr>
+                        <td>
+                            <?= htmlspecialchars("{$ride['day_abbr']} " . date('m-d-Y', strtotime($ride['day']))) ?>
+                        </td>
+                        <td>
+                            <select name="shift_id" onchange="enableSaveButton()">
+                                <?php foreach ($ride['shift_options'] ?? [] as $shift): ?>
+                                    <!-- Check if shift_start and shift_end are available -->
+                                    <?php if (!empty($shift['shift_start']) && !empty($shift['shift_end'])): ?>
+                                        <?php
+                                        // Build the display text
+                                        $displayText = "{$shift['day_abbr']} - {$shift['shift_start']} - {$shift['shift_end']}";
+                                        $spotsText = $shift['remaining_spots'] > 0 ? "({$shift['remaining_spots']} spots)" : "(Change Role)";
+                                        ?>
+                                        <!-- Apply conditional styling based on remaining spots -->
+                                        <option value="<?= htmlspecialchars($shift['shift_id']) ?>" <?= $shift['remaining_spots'] == 0 ? 'style="color: red;"' : '' ?>>
+                                            <?= htmlspecialchars("{$displayText} {$spotsText}") ?>
+                                        </option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
                         <td>
                             <select onchange="enableSaveButton()">
                                 <option value="<?= htmlspecialchars($ride['role_id']) ?>" selected>
@@ -228,7 +278,8 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
                             </select>
                         </td>
                         <td>
-                            <input type="number" value="<?= htmlspecialchars($ride['num_people']) ?>" onchange="enableSaveButton()">
+                            <input type="number" value="<?= htmlspecialchars($ride['num_people']) ?>"
+                                onchange="enableSaveButton()">
                         </td>
                         <td>
                             <textarea><?= htmlspecialchars($ride['notes']) ?></textarea>
@@ -243,60 +294,61 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         <button onclick="removeAll()">Remove Me From ALL Rides</button>
         <button onclick="printSchedule()">Print My Schedule</button>
     </div>
-<script>
-    function enableSaveButton() {
-        document.getElementById('save-button').disabled = false;
-    }
-    
-    document.addEventListener('DOMContentLoaded', () => {
-        const dropdowns = document.querySelectorAll('select');
-        const textareas = document.querySelectorAll('textarea');
-        const numberInputs = document.querySelectorAll('input[type="number"]');
+    <script>
+        function enableSaveButton() {
+            document.getElementById('save-button').disabled = false;
+        }
 
-        dropdowns.forEach(dropdown => dropdown.addEventListener('change', enableSaveButton));
-        textareas.forEach(textarea => textarea.addEventListener('input', enableSaveButton));
-        numberInputs.forEach(input => input.addEventListener('input', enableSaveButton));
-    });
+        document.addEventListener('DOMContentLoaded', () => {
+            const dropdowns = document.querySelectorAll('select');
+            const textareas = document.querySelectorAll('textarea');
+            const numberInputs = document.querySelectorAll('input[type="number"]');
 
-    function saveChanges() {
-        const rows = document.querySelectorAll("tbody tr");
-        const updates = [];
+            dropdowns.forEach(dropdown => dropdown.addEventListener('change', enableSaveButton));
+            textareas.forEach(textarea => textarea.addEventListener('input', enableSaveButton));
+            numberInputs.forEach(input => input.addEventListener('input', enableSaveButton));
+        });
 
-        rows.forEach(row => {
-            const shiftSelect = row.querySelector("td:nth-of-type(2) select");
-            const roleSelect = row.querySelector("td:nth-of-type(3) select");
-            const groupSizeInput = row.querySelector("input[type='number']");
-            const notesTextarea = row.querySelector("textarea");
-            const signupId = row.querySelector("button[onclick]").getAttribute("onclick").match(/\d+/)[0];
+        function saveChanges() {
+            const rows = document.querySelectorAll("tbody tr");
+            const updates = [];
 
-            updates.push({
-                signup_id: signupId,
-                slot_id: shiftSelect.value,
-                role_id: roleSelect.value,
-                num_people: groupSizeInput.value,
-                notes: notesTextarea.value
+            rows.forEach(row => {
+                const shiftSelect = row.querySelector("td:nth-of-type(2) select");
+                const roleSelect = row.querySelector("td:nth-of-type(3) select");
+                const groupSizeInput = row.querySelector("input[type='number']");
+                const notesTextarea = row.querySelector("textarea");
+                const signupId = row.querySelector("button[onclick]").getAttribute("onclick").match(/\d+/)[0];
+
+                updates.push({
+                    signup_id: signupId,
+                    slot_id: shiftSelect.value,
+                    role_id: roleSelect.value,
+                    num_people: groupSizeInput.value,
+                    notes: notesTextarea.value
+                });
             });
-        });
 
-        fetch('update_signups.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ updates: updates })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message);
-                location.reload();
-            } else {
-                alert("Error: " + data.message);
-            }
-        })
-        .catch(error => {
-            console.error("Fetch error:", error);
-            alert("An unexpected error occurred.");
-        });
-    }
-</script>
+            fetch('update_signups.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ updates: updates })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        location.reload();
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Fetch error:", error);
+                    alert("An unexpected error occurred.");
+                });
+        }
+    </script>
 </body>
+
 </html>
