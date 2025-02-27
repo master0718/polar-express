@@ -23,8 +23,11 @@ if (!isset($_SESSION['admin']['logged_in']) || $_SESSION['admin']['logged_in'] !
 <body class="bg-light">
     <div class="container py-5">
         <h1 class="text-center">Manage Gallery</h1>
-        <div class="alert alert-info text-center">
-            This feature is coming soon. Placeholder for gallery management.
+        <div class="list-group">
+            <a href="" class="list-group-item list-group-item-action">ManageTicket</a>
+            <a href="" class="list-group-item list-group-item-action">Manage FAQs</a>
+            <a href="" class="list-group-item list-group-item-action">Sponsors</a>
+            <a href="" class="list-group-item list-group-item-action">merchandise</a>
         </div>
         <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
     </div>

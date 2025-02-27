@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (verify_login($username, $password)) {
         // Set session for logged-in user
-        $_SESSION['admin'] = [
+        $phote['admin'] = [
             'username' => $username,
             'role' => 'admin', // Default role is admin; can expand to other roles
             'logged_in' => true

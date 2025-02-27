@@ -13,8 +13,7 @@ if (!isset($_SESSION['volunteer_logged_in']) || !$_SESSION['volunteer_logged_in'
 }
 
 // Define the role ID for "Chefs" (update this ID based on your database)
-$role_id = 3
-;
+$role_id = 3;
 
 // Check if the user is logged in
 if (!isset($_SESSION['volunteer_logged_in']) || !$_SESSION['volunteer_logged_in']) {
@@ -103,25 +102,97 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Chefs Signup</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0; }
-        .container { width: 90%; margin: auto; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid black; padding: 8px; text-align: left; }
-        .day-saturday { background-color: #d4edda; text-align: center; }
-        .day-sunday { background-color: #ffe5b4; text-align: center; }
-        .full { background-color: lightgray; pointer-events: none; }
-        .comments { font-style: italic; font-size: 0.85em; color: gray; }
-        .header-row { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-        .header-row .left { flex: 1; text-align: left; }
-        .header-row .right { flex: 1; text-align: right; }
-        #total-commitment { font-weight: bold; display: none; margin-bottom: 10px; }
-        #submit-button, #edit-button { background-color: blue; color: white; border: none; padding: 10px; cursor: pointer; display: none; margin-top: 10px; }
-        #submit-button:disabled, #edit-button:disabled { background-color: gray; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .day-saturday {
+            background-color: #d4edda;
+            text-align: center;
+        }
+
+        .day-sunday {
+            background-color: #ffe5b4;
+            text-align: center;
+        }
+
+        .full {
+            background-color: lightgray;
+            pointer-events: none;
+        }
+
+        .comments {
+            font-style: italic;
+            font-size: 0.85em;
+            color: gray;
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .header-row .left {
+            flex: 1;
+            text-align: left;
+        }
+
+        .header-row .right {
+            flex: 1;
+            text-align: right;
+        }
+
+        #total-commitment {
+            font-weight: bold;
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        #submit-button,
+        #edit-button {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            display: none;
+            margin-top: 10px;
+        }
+
+        #submit-button:disabled,
+        #edit-button:disabled {
+            background-color: gray;
+        }
     </style>
     <script>
         let totalMinutes = 0;
@@ -174,6 +245,7 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         }
 
         function handleSubmitSelections() {
+
             if (selectedRides.size === 0) {
                 alert('Please select at least one ride.');
                 return;
@@ -186,16 +258,19 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
                 partySize: document.getElementById(`party-size-${slotId}`).value,
                 notes: document.getElementById(`notes-${slotId}`).value,
             }));
+            console.log(data);
 
             fetch('submit_selections.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-            })
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data),
+                })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert('Selections submitted successfully!');
+                        alert(data.message);
                         location.reload();
                     } else {
                         alert(`Error: ${data.message}`);
@@ -208,12 +283,19 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         }
     </script>
 </head>
+
 <body>
-<center><a href="edit_role_selections.php"><b>Edit My Selections</b></a></center>
+    <center class="mt-5" style="margin-top: 30px;">
+        <a href="edit_role_selections.php" class="mt-5" style="text-decoration: none; text-decoration-color: none;">
+            <h3>Edit My Selections</h3>
+        </a>
+    </center>
 
     <div class="container">
         <div class="header-row">
-            <div class="left"><h1>Chefs Signup</h1></div>
+            <div class="left">
+                <h1>Chefs Signup</h1>
+            </div>
             <div class="right">
                 <div id="total-commitment"></div>
                 <?php if (!empty($existingSelections)): ?>
@@ -242,48 +324,51 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 
                     if ($lastDay !== $ride['day_abbr']): ?>
                         <tr class="table-header <?= $dayClass ?>">
-                            <td colspan="6"><center><b><?= htmlspecialchars($ride['day_abbr']) ?></b></center></td>
+                            <td colspan="6">
+                                <center><b><?= htmlspecialchars($ride['day_abbr']) ?></b></center>
+                            </td>
                         </tr>
                     <?php
                         $lastDay = $ride['day_abbr'];
                     endif;
-                ?>
-                <tr class="<?= $isFull ? 'full' : $dayClass ?>">
-                    <td><?= htmlspecialchars($ride['day_abbr']) ?></td>
-                    <td><?= htmlspecialchars($ride['shift_start']) ?></td>
-                    <td><?= htmlspecialchars($ride['shift_end']) ?></td>
-                    <td><?= htmlspecialchars($ride['max_volunteers']) ?></td>
-                    <td><?= htmlspecialchars($ride['filled_slots']) ?></td>
-                    <td>
-                        <?php if (!$isFull && empty($ride['conflict_message'])): ?>
-                            <input type="checkbox" id="checkbox-<?= $ride['slot_id'] ?>" 
-                                   onchange="toggleSelection(<?= $ride['slot_id'] ?>, <?= $ride['shift_minutes'] ?>)">
-                            <label id="label-<?= $ride['slot_id'] ?>">Check Box to Select</label>
-                            <select id="party-size-<?= $ride['slot_id'] ?>" style="display: none; margin-right: 5px;">
-                                <?php for ($i = 1; $i <= $ride['remaining_slots']; $i++): ?>
-                                    <option value="<?= $i ?>"><?= $i ?></option>
-                                <?php endfor; ?>
-                            </select>
-                            <span id="dropdown-text-<?= $ride['slot_id'] ?>" style="display: none;">How many in your group</span>
-                            <textarea id="notes-<?= $ride['slot_id'] ?>" placeholder="Add notes" style="display: none;"></textarea>
-                        <?php elseif (!empty($ride['conflict_message'])): ?>
-                            <div style="color: red;"><?= htmlspecialchars($ride['conflict_message']) ?></div>
-                        <?php else: ?>
-                            <div><b>FULL</b></div>
-                        <?php endif; ?>
-                        <div id="volunteer-display-<?= $ride['slot_id'] ?>">
-                            <?php foreach ($ride['signups'] as $signup): ?>
-                                <div>
-                                    <?= htmlspecialchars($signup['name']) ?> (<?= htmlspecialchars($signup['num_people']) ?>)
-                                    <div class="comments"><?= htmlspecialchars($signup['notes']) ?></div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </td>
-                </tr>
+                    ?>
+                    <tr class="<?= $isFull ? 'full' : $dayClass ?>">
+                        <td><?= htmlspecialchars($ride['day_abbr']) ?></td>
+                        <td><?= htmlspecialchars($ride['shift_start']) ?></td>
+                        <td><?= htmlspecialchars($ride['shift_end']) ?></td>
+                        <td><?= htmlspecialchars($ride['max_volunteers']) ?></td>
+                        <td><?= htmlspecialchars($ride['filled_slots']) ?></td>
+                        <td>
+                            <?php if (!$isFull && empty($ride['conflict_message'])): ?>
+                                <input type="checkbox" id="checkbox-<?= $ride['slot_id'] ?>"
+                                    onchange="toggleSelection(<?= $ride['slot_id'] ?>, <?= $ride['shift_minutes'] ?>)">
+                                <label id="label-<?= $ride['slot_id'] ?>">Check Box to Select</label>
+                                <select id="party-size-<?= $ride['slot_id'] ?>" style="display: none; margin-right: 5px;">
+                                    <?php for ($i = 1; $i <= $ride['remaining_slots']; $i++): ?>
+                                        <option value="<?= $i ?>"><?= $i ?></option>
+                                    <?php endfor; ?>
+                                </select>
+                                <span id="dropdown-text-<?= $ride['slot_id'] ?>" style="display: none;">How many in your group</span>
+                                <textarea id="notes-<?= $ride['slot_id'] ?>" placeholder="Add notes" style="display: none;"></textarea>
+                            <?php elseif (!empty($ride['conflict_message'])): ?>
+                                <div style="color: red;"><?= htmlspecialchars($ride['conflict_message']) ?></div>
+                            <?php else: ?>
+                                <div><b>FULL</b></div>
+                            <?php endif; ?>
+                            <div id="volunteer-display-<?= $ride['slot_id'] ?>">
+                                <?php foreach ($ride['signups'] as $signup): ?>
+                                    <div>
+                                        <?= htmlspecialchars($signup['name']) ?> (<?= htmlspecialchars($signup['num_people']) ?>)
+                                        <div class="comments"><?= htmlspecialchars($signup['notes']) ?></div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
 </body>
+
 </html>

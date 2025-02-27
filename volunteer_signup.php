@@ -50,41 +50,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Volunteer Sign Up</title>
+    <link rel="stylesheet" href="./master.css">
+    <style>
+        input::placeholder {
+            color: white;
+            /* Placeholder text color */
+            opacity: 1;
+            /* Ensure full visibility in some browsers */
+        }
+    </style>
 </head>
-<body class="bg-light">
-    <div class="container py-5">
-        <h1 class="text-center mb-4">Volunteer Sign Up</h1>
-        <?php if (isset($errorMessage)): ?>
-            <div class="alert alert-danger"><?= htmlspecialchars($errorMessage) ?></div>
-        <?php endif; ?>
-        <form method="POST" class="w-50 mx-auto">
-            <div class="mb-3">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" name="email" id="email" class="form-control" required>
+
+<body>
+    <div id="login-window">
+        <div id="login-box" class="glassy-dark-bg rounded-custom">
+            <div id='logo'>
+                <!-- <img src="./images/dummy_logo.png" alt="logo" height="64" /> -->
             </div>
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" name="name" id="name" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="phone" class="form-label">Phone (Optional)</label>
-                <input type="text" name="phone" id="phone" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" id="password" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="confirm_password" class="form-label">Confirm Password</label>
-                <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-        </form>
+            <h2 id="login-header" class="logo-font">Volunteer Sign Up</h2>
+            <?php if (isset($errorMessage)): ?>
+                <div class="alert alert-danger"><?= htmlspecialchars($errorMessage) ?></div>
+            <?php endif; ?>
+            <form class="my-3" method="POST">
+                <input class="input text-pale-light full-opacity-bg rounded-custom mt-3" type="email" name="email" id="email" placeholder="Email:" required /><br />
+                <input class="input text-pale-light full-opacity-bg rounded-custom mt-3" type="text" name="name" id="name" placeholder="Name:" required /><br />
+                <input class="input text-pale-light full-opacity-bg rounded-custom mt-3" type="text" name="phone" id="phone" placeholder="Phone (Optional):" /><br />
+                <input class="input text-pale-light full-opacity-bg rounded-custom mt-3" type="password" name="password" id="password" placeholder="Password:" required /><br />
+                <input class="input text-pale-light full-opacity-bg rounded-custom mt-3" type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password:" required /><br />
+                <button class="btn-hover  w-100 mt-5" type="submit" style="margin : 0; background-color:#3D4267">Sign Up</button>
+            </form>
+        </div>
     </div>
 </body>
+
 </html>
